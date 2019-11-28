@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/physics-ball-throw-simulation/precache-manifest.afebf0b785a4ba5c577b4e8e7ec882ec.js"
+  "/physics-ball-throw-simulation/precache-manifest.74db1acba30dcc2455693eb23ebdcc5a.js"
 );
 
 self.addEventListener('message', (event) => {
