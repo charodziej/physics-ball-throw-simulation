@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/physics-ball-throw-simulation/static/css/main.53e19286.chunk.css",
-    "main.js": "/physics-ball-throw-simulation/static/js/main.1384adce.chunk.js",
-    "main.js.map": "/physics-ball-throw-simulation/static/js/main.1384adce.chunk.js.map",
+    "main.js": "/physics-ball-throw-simulation/static/js/main.98aa7fac.chunk.js",
+    "main.js.map": "/physics-ball-throw-simulation/static/js/main.98aa7fac.chunk.js.map",
     "runtime-main.js": "/physics-ball-throw-simulation/static/js/runtime-main.6c0621fb.js",
     "runtime-main.js.map": "/physics-ball-throw-simulation/static/js/runtime-main.6c0621fb.js.map",
-    "static/js/2.e94d0616.chunk.js": "/physics-ball-throw-simulation/static/js/2.e94d0616.chunk.js",
-    "static/js/2.e94d0616.chunk.js.map": "/physics-ball-throw-simulation/static/js/2.e94d0616.chunk.js.map",
+    "static/js/2.8e623d73.chunk.js": "/physics-ball-throw-simulation/static/js/2.8e623d73.chunk.js",
+    "static/js/2.8e623d73.chunk.js.map": "/physics-ball-throw-simulation/static/js/2.8e623d73.chunk.js.map",
     "index.html": "/physics-ball-throw-simulation/index.html",
-    "precache-manifest.8823bec2b964ad9de7c035acc4d05089.js": "/physics-ball-throw-simulation/precache-manifest.8823bec2b964ad9de7c035acc4d05089.js",
+    "precache-manifest.ef16eea0b073802e86154c430cdebddc.js": "/physics-ball-throw-simulation/precache-manifest.ef16eea0b073802e86154c430cdebddc.js",
     "service-worker.js": "/physics-ball-throw-simulation/service-worker.js",
     "static/css/main.53e19286.chunk.css.map": "/physics-ball-throw-simulation/static/css/main.53e19286.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.6c0621fb.js",
-    "static/js/2.e94d0616.chunk.js",
+    "static/js/2.8e623d73.chunk.js",
     "static/css/main.53e19286.chunk.css",
-    "static/js/main.1384adce.chunk.js"
+    "static/js/main.98aa7fac.chunk.js"
   ]
 }
