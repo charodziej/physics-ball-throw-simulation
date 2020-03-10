@@ -8,6 +8,10 @@ import { CssBaseline }    from '@material-ui/core';
 import Paper              from '@material-ui/core/Paper';
 import Grid               from '@material-ui/core/Grid';
 import Slider             from '@material-ui/core/Slider';
+import IconButton         from '@material-ui/core/IconButton';
+import PlayArrowIcon      from '@material-ui/icons/PlayArrow';
+import PauseIcon          from '@material-ui/icons/Pause';
+
 
 import Simulation from './SimulationComponent'
 import Settings   from './SettingsComponent'
@@ -100,6 +104,7 @@ class App extends React.PureComponent {
             showVelocity: true,
             showAcceleration: true,
             showBall: true,
+            animateInterval: null,
         }
         for (let index = 0; index < 100; index++) {
             this.state.results.locations.push({ x: 100, y: 100+index })
@@ -161,12 +166,13 @@ class App extends React.PureComponent {
             },
             reach,
             maxHeight,
-            time: 0,
+            time: Math.min(this.state.time, accelerations.length - 1),
             shouldCalculate: false,
         })
     }
 
     changeConstant = (evt) => {
+        this.animation(0)
         this.setState({
             constants: { 
                 ...this.state.constants,
@@ -177,6 +183,7 @@ class App extends React.PureComponent {
     }
 
     changeStart = (evt) => {
+        this.animation(0)
         let event = { ...evt }
         if (event.target.name === "angleDeg") {
             event = {
@@ -208,6 +215,7 @@ class App extends React.PureComponent {
     }
 
     changeSetting = (evt) => {
+        this.animation(0)
         if (evt.target.name === "timeChange" || evt.target.name === "iterationLimit") {
             this.setState({
                 [evt.target.name]: evt.target.value,
@@ -241,6 +249,35 @@ class App extends React.PureComponent {
             this.setState({
                 theme: darkTheme
             })
+        }
+    }
+
+    animation = (result = -1) => {
+        if ((result === -1 && this.state.animateInterval !== null) || result === 0) {
+            clearInterval(this.state.animateInterval)
+            this.setState({
+                animateInterval: null,
+            })
+        } else {
+            let animateInterval = setInterval(() => this.animationTick(Math.max(1, Math.round((this.state.results.accelerations.length - 1) / 300))), 30)
+            //let animateInterval = setInterval(() => this.animationTick(10, 30))
+            this.setState({
+                animateInterval
+            })
+        }
+    }
+
+    animationTick = (tickTime) => {
+        if (this.state.time + tickTime > (this.state.results.accelerations.length - 1)) {
+            clearInterval(this.state.animateInterval)
+            this.setState({
+                time: 0,
+                animateInterval: null,
+            })
+        } else {
+            this.setState((state, props) => ({
+                time: state.time + tickTime,
+            }))
         }
     }
 
@@ -303,7 +340,16 @@ class App extends React.PureComponent {
                                     min={0}
                                     max={this.state.results.accelerations.length - 1}
                                     onChange={this.changeTime}
+                                    style={{ height: "90%" }}
                                 />
+                                <IconButton 
+                                    color="inherit"
+                                    aria-label="Menu"
+                                    onClick={() => this.animation()}
+                                    style={{ display: "flex" }}
+                                >
+                                    {(this.state.animateInterval) ? (<PauseIcon />) : (<PlayArrowIcon />)}
+                                </IconButton>
                             </Paper>
                         </Grid>
                         <Grid item xs className={classes.paper_container} >

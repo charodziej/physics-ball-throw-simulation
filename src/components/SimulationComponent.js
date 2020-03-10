@@ -42,8 +42,9 @@ class Simulation extends React.PureComponent {
         window.removeEventListener('resize', this.updateDimensions);
     }
 
-    componentDidUpdate() {
-        this.updateCanvas()
+    componentDidUpdate(prevprops) {
+        if (this.props.time === prevprops.time || this.props.time === this.props.results.accelerations.length - 1)
+            this.updateCanvas()
     }
 
     updateCanvas = () => {
@@ -91,21 +92,12 @@ class Simulation extends React.PureComponent {
         const canvasRect = canvas.getBoundingClientRect()
         const documentRect = document.body.getBoundingClientRect()
 
-        if (this.props.reach > 0 && this.props.maxHeight > 0) {
-            this.setState({
-                canvasHeight: canvas.clientHeight - 6,
-                canvasWidth:  canvas.clientWidth - 6,
-                canvasLeft:  canvasRect.left - documentRect.left,
-                canvasTop:   canvasRect.top  - documentRect.top,
-            })
-        } else {
-            this.setState({
-                canvasHeight: canvas.clientHeight - 6,
-                canvasWidth:  canvas.clientWidth - 6,
-                canvasLeft:  canvasRect.left - documentRect.left,
-                canvasTop:   canvasRect.top  - documentRect.top,
-            })
-        }
+        this.setState({
+            canvasHeight: canvas.clientHeight - 6,
+            canvasWidth:  canvas.clientWidth - 6,
+            canvasLeft:  canvasRect.left - documentRect.left,
+            canvasTop:   canvasRect.top  - documentRect.top,
+        })
     }
 
     scale = () => {
